@@ -59,7 +59,7 @@ def process_packet_out():
                     except Exception as e:
                         print(e)
                 elif not initiate_out: 
-                    if (total_packets_out - packets_min_out) > 5:  # how many packets to BLOCK
+                    if (total_packets_out - packets_min_out) > 7:  # how many packets to BLOCK
                         total_packets_out = 0
                         if packets_min_out < packets_max_out:
                             packets_min_out = packets_min_out + 1
@@ -100,7 +100,7 @@ def process_packet_in():
                     except Exception as e:
                         print(e)
                 elif not initiate_in: 
-                    if (total_packets_in - packets_min_in) > 5: # how many packets to BLOCK
+                    if (total_packets_in - packets_min_in) > 7: # how many packets to BLOCK
                         total_packets_in = 0
                         if packets_min_in < packets_max_in:
                             packets_min_in = packets_min_in + 1
@@ -130,14 +130,14 @@ def check_last_update():
                 #timings in
                 total_packets_in = 0
                 packets_min_in = 1
-                packets_max_in = 10
+                packets_max_in = 16
                 
                 drop_out = True
                 initiate_out = True
                 #timings out
                 total_packets_out = 0
                 packets_min_out = 1
-                packets_max_out = 10
+                packets_max_out = 16
 
             if keyboard.read_key() == '7':
                 print(f"\n\n")
@@ -149,7 +149,7 @@ def check_last_update():
             break 
 
 
-print(f"Boole! v2.1\n\n")
+print(f"Boole! v2.2\n\n")
 print(f"Press 6 to enable\nPress 7 to disable")
 t1 = Thread(target=check_last_update,daemon=True)
 t2 = Thread(target=process_packet_in,daemon=True)
