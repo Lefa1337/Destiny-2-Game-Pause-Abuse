@@ -44,8 +44,10 @@ def process_packet_out():
                 except Exception as e:
                     print(e)
             else:
-                time.sleep(0.15)
-                if total_packets_out < 25 and initiate_out:
+                #slow the packet
+                time.sleep(0.20)
+                # how many packets to BLOCK to get into the "Mode"
+                if total_packets_out < 20 and initiate_out:
                     pass #DROP
                 elif initiate_out:
                     initiate_out = False
@@ -57,7 +59,7 @@ def process_packet_out():
                     except Exception as e:
                         print(e)
                 elif not initiate_out: 
-                    if (total_packets_out - packets_min_out) > 4:
+                    if (total_packets_out - packets_min_out) > 5:  # how many packets to BLOCK
                         total_packets_out = 0
                         if packets_min_out < packets_max_out:
                             packets_min_out = packets_min_out + 1
@@ -83,8 +85,10 @@ def process_packet_in():
                 except Exception as e:
                     print(e)
             else:
-                time.sleep(0.25)
-                if total_packets_in < 25 and initiate_in:
+                #slow the packet
+                time.sleep(0.20)
+                # how many packets to BLOCK to get into the "Mode"
+                if total_packets_in < 20 and initiate_in:
                     pass #DROP
                 elif initiate_in:
                     initiate_in = False
@@ -96,7 +100,7 @@ def process_packet_in():
                     except Exception as e:
                         print(e)
                 elif not initiate_in: 
-                    if (total_packets_in - packets_min_in) > 6:
+                    if (total_packets_in - packets_min_in) > 5: # how many packets to BLOCK
                         total_packets_in = 0
                         if packets_min_in < packets_max_in:
                             packets_min_in = packets_min_in + 1
@@ -123,15 +127,17 @@ def check_last_update():
                 winsound.Beep(750, 250)
                 drop_in = True
                 initiate_in = True
+                #timings in
                 total_packets_in = 0
                 packets_min_in = 1
-                packets_max_in = 5
+                packets_max_in = 10
                 
                 drop_out = True
                 initiate_out = True
+                #timings out
                 total_packets_out = 0
                 packets_min_out = 1
-                packets_max_out = 15
+                packets_max_out = 10
 
             if keyboard.read_key() == '7':
                 print(f"\n\n")
