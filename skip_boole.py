@@ -66,7 +66,7 @@ def process_packet_out():
                 # how many packets to BLOCK to get into the "Mode"
                 if total_packets_out < 20 and initiate_out:
                     log(f"BLOCKED out {total_packets_out} (initial)")
-                    missed_packets_out.append(packet)
+                    #missed_packets_out.append(packet)
                     pass #DROP
                 elif initiate_out:
                     initiate_out = False
@@ -83,7 +83,7 @@ def process_packet_out():
                         if packets_min_out < packets_max_out:
                             packets_min_out = packets_min_out + 1
                     log(f"BLOCKED out {total_packets_out}")
-                    missed_packets_out.append(packet)
+                    #missed_packets_out.append(packet)
                     pass #DROP
 
 
@@ -114,7 +114,7 @@ def process_packet_in():
                 # how many packets to BLOCK to get into the "Mode"
                 if total_packets_in < 20 and initiate_in:
                     log(f"BLOCKED in {total_packets_in} (initial)")
-                    missed_packets_in.append(packet)
+                    #missed_packets_in.append(packet)
                     pass #DROP
                 elif initiate_in:
                     initiate_in = False
@@ -131,7 +131,7 @@ def process_packet_in():
                         if packets_min_in < packets_max_in:
                             packets_min_in = packets_min_in + 1
                     log(f"BLOCKED in {total_packets_in}")
-                    missed_packets_in.append(packet)
+                    #missed_packets_in.append(packet)
                     pass #DROP
 
 def check_last_update():
@@ -157,14 +157,14 @@ def check_last_update():
                 #timings in
                 total_packets_in = 0
                 packets_min_in = 1
-                packets_max_in = 8
+                packets_max_in = 6
                 
                 drop_out = True
                 initiate_out = True
                 #timings out
                 total_packets_out = 0
                 packets_min_out = 1
-                packets_max_out = 8
+                packets_max_out = 6
 
             if keyboard.read_key() == '7':
                 print(f"\n")
@@ -176,7 +176,7 @@ def check_last_update():
             break 
 
 
-print(f"Boole! v2.5\n\n")
+print(f"Boole! v2.6\n\n")
 print(f"Press 6 to enable\nPress 7 to disable")
 t1 = Thread(target=check_last_update,daemon=True)
 t2 = Thread(target=process_packet_in,daemon=True)
