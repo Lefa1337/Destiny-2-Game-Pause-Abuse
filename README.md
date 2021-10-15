@@ -1,4 +1,4 @@
-# d2-skip
+# d2-skip for the Destiny 2 
 Press 6 to "pause" the game (pve only)
 Press 7 to "continue" the game (pve only)
  
